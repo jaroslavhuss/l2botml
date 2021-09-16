@@ -1,0 +1,26 @@
+<annotation>
+	<folder>images</folder>
+	<filename>116.jpg</filename>
+	<path>C:\Users\hussj\Documents\L2MLSolution\images\116.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>1012</width>
+		<height>806</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>monster</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>10</xmin>
+			<ymin>249</ymin>
+			<xmax>112</xmax>
+			<ymax>412</ymax>
+		</bndbox>
+	</object>
+</annotation>
