@@ -6,8 +6,8 @@ const makeAMouseClick = (event) => {
       if (err) {
         return console.log("Error on write: ", err.message);
       }
+      res(true);
     });
-    res(true);
   });
 };
 module.exports = makeAMouseClick;
