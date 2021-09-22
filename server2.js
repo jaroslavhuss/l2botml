@@ -29,7 +29,6 @@ let searching = 0;
 let followCounter = 0;
 let buffCounter = 0;
 const mainThread = async () => {
-  console.log("Hledám: ", searching);
   counter++;
   followCounter++;
   buffCounter++;
@@ -41,7 +40,6 @@ const mainThread = async () => {
     bottom,
     UBUNTU_SERVER_URL
   );
-
   if (data.length > 0) {
     const { w, h, x, y } = data[0].box;
     const wasMoved = await move(w, h, x, y);
@@ -49,7 +47,9 @@ const mainThread = async () => {
       const wasClicked = await click("click");
       searching = 0;
       if (wasClicked) {
-        mainThread();
+        setTimeout(() => {
+          mainThread();
+        }, 1000);
       }
     }
   } else {
@@ -58,16 +58,20 @@ const mainThread = async () => {
       searching = 0;
       const unstuck = await click("unstuck");
       if (unstuck) {
-        mainThread();
+        setTimeout(() => {
+          mainThread();
+        }, 1000);
       }
     } else {
-      if (buffCounter > 35) {
+      if (buffCounter > 65) {
         buffCounter = 0;
         manaMainCharacter();
       } else {
         const wasMoved = await click("move");
         if (wasMoved) {
-          mainThread();
+          setTimeout(() => {
+            mainThread();
+          }, 1000);
         }
       }
     }
