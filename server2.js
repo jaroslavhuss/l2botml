@@ -12,7 +12,7 @@ const axios = require("axios");
  * =========================================
  * THE MOST IMPORTANT BLOCK OF THE CODE FUCKING FILIP!
  */
-const UBUNTU_SERVER_URL = "http://172.20.197.169:5432"; //When WSL2 started, the program will tell you the URL
+const UBUNTU_SERVER_URL = "http://10.0.1.25:5432"; //When WSL2 started, the program will tell you the URL
 const NAME_OF_CHARACTER = "Lymfo"; // Look at L2 window
 const NAME_OF_BUFFER_CHARACTER = "Herpes";
 
