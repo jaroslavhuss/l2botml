@@ -33,6 +33,8 @@ const mainThread = async () => {
   followCounter++;
   buffCounter++;
   const { left, top, right, bottom } = await L2Window(NAME_OF_CHARACTER);
+  console.log("1. Načetl jsem okno hlavního charu");
+
   const { data } = await screenShot(
     left,
     top,
@@ -40,38 +42,40 @@ const mainThread = async () => {
     bottom,
     UBUNTU_SERVER_URL
   );
+  console.log(data);
+  console.log("2. Udělal jsem screenshot a získal data z telefonu");
   if (data.length > 0) {
     const { w, h, x, y } = data[0].box;
-    const wasMoved = await move(w, h, x, y);
-    if (wasMoved) {
-      const wasClicked = await click("click");
+    await move(w, h, x, y);
+    console.log("3. Pohybuji myší k mobovi");
+    const wasClicked = await click("click");
+    console.log("4. Klikám na moba");
+    if (wasClicked) {
       searching = 0;
-      if (wasClicked) {
-        setTimeout(() => {
-          mainThread();
-        }, 1000);
-      }
+      console.log("5. Obnovuji cyklus");
+      mainThread();
     }
   } else {
     searching++;
     if (searching > 5) {
       searching = 0;
       const unstuck = await click("unstuck");
+      console.log("3. mačkám macro, abych našel moba - jsem zaseklý");
       if (unstuck) {
-        setTimeout(() => {
-          mainThread();
-        }, 1000);
+        console.log("4. obnovuji cyklus");
+        mainThread();
       }
     } else {
       if (buffCounter > 65) {
         buffCounter = 0;
+        console.log("3. Doplňuji manu mainu");
         manaMainCharacter();
       } else {
         const wasMoved = await click("move");
+        console.log("3. klikl jsem doleva, abych se rozhlédl");
         if (wasMoved) {
-          setTimeout(() => {
-            mainThread();
-          }, 1000);
+          console.log("Obnovuji cyklus");
+          mainThread();
         }
       }
     }
@@ -80,34 +84,37 @@ const mainThread = async () => {
 const followMainCharacterLogic = async () => {
   await L2Window(NAME_OF_BUFFER_CHARACTER);
   await buffer("follow");
-  setTimeout(() => {
+  setTimeout(async () => {
     mainThread();
   }, 2000);
 };
 const healMainCharacter = async () => {
   await L2Window(NAME_OF_BUFFER_CHARACTER);
   await buffer("heal");
-  setTimeout(() => {
+  setTimeout(async () => {
     mainThread();
   }, 2000);
 };
 const buffMainCharacter = async () => {
   await L2Window(NAME_OF_BUFFER_CHARACTER);
   await buffer("buff");
-  setTimeout(() => {
+  setTimeout(async () => {
     mainThread();
   }, 2000);
 };
 const manaMainCharacter = async () => {
   await L2Window(NAME_OF_BUFFER_CHARACTER);
+  console.log("4. Načetl jsem buffera");
   await buffer("mana");
-  setTimeout(() => {
+  console.log("5. Dal jsem mu manu");
+  setTimeout(async () => {
+    console.log("6. obnovuji cyklus");
     mainThread();
   }, 2000);
 };
 const main = async () => {
   followMainCharacterLogic();
-  setTimeout(() => {
+  setTimeout(async () => {
     mainThread();
   }, 2000);
 };

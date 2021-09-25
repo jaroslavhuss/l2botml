@@ -13,7 +13,7 @@ const makeScreenshot = async (x1, y1, x2, y2, counter) => {
       imageFormat: ImageFormat.JPEG,
     }).then((response) => {
       fs.writeFileSync(
-        "./cruma/" + counter + ".jpg",
+        "../cruma/" + counter + ".jpg",
         Buffer.from(response.imageBuffer, "base64")
       );
       res(true);
